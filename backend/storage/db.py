@@ -54,7 +54,7 @@ def get_db_path(config_path: Optional[Path] = None) -> Path:
 def init_db(db_path: Path) -> sqlite3.Connection:
     """Create the database file, enable WAL + foreign keys, and apply the schema."""
     db_path.parent.mkdir(parents=True, exist_ok=True)
-    conn = sqlite3.connect(db_path)
+    conn = sqlite3.connect(db_path, check_same_thread=False)
     conn.execute("PRAGMA journal_mode=WAL")
     conn.execute("PRAGMA foreign_keys=ON")
     conn.executescript(_DDL)

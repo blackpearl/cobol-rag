@@ -1,0 +1,2 @@
+db_path: data/cobol_rag.db
+chroma_path: data/chroma
